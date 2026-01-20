@@ -8,6 +8,9 @@ redirect_from:
 ---
 
 {% include base_path %}
+📄 **[Download CV (PDF)](/files/Sanyam_Mahajan_CV.pdf)**
+
+
 
 Education
 ======
