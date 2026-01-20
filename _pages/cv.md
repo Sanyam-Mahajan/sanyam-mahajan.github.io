@@ -15,6 +15,7 @@ Education
 * B.A. (with Honours) in Political Science, Ramjas College, University of Delhi, 2025  
 
 ---
+
 Publications
 ======
 - *Reimagining Policing in Society 5.0* (forthcoming), with Takshashila Institution  
