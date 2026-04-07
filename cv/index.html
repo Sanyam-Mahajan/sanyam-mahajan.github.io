@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Sanyam Mahajan</title>
+  <meta name="description" content="Sanyam Mahajan — policy researcher working on digital infrastructure, data governance, and rights in India and the Global South.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+  <style>
+/* ============================================================
+   SANYAM MAHAJAN — Academic Site
+   Dark & refined theme, multi-page
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-deep:    #0b0c10;
+  --bg:         #101117;
+  --bg-card:    #161821;
+  --bg-raised:  #1c1e2a;
+  --bg-hover:   #222436;
+  --border:     #2a2d3e;
+  --border-dim: #1e2030;
+
+  --text:       #e0e0e8;
+  --text-dim:   #8b8ea4;
+  --text-muted: #5c5f76;
+
+  --accent:     #6ea8d9;
+  --accent-dim: #4a7da8;
+  --accent-glow: rgba(110,168,217,0.08);
+  --accent-glow-strong: rgba(110,168,217,0.15);
+
+  --gold:       #d4a959;
+  --gold-dim:   rgba(212,169,89,0.12);
+
+  --serif:      'Playfair Display', Georgia, 'Times New Roman', serif;
+  --sans:       'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --max-w:      880px;
+  --gutter:     clamp(1.25rem, 5vw, 3rem);
+  --radius:     10px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: var(--border) var(--bg);
+}
+
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.68;
+  font-size: 15px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+a { color: var(--accent); text-decoration: none; transition: color 0.2s; }
+a:hover { color: #8fc4ec; }
+
+::selection { background: var(--accent-glow-strong); color: #fff; }
+
+/* ---- NOISE TEXTURE (subtle) ---- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 256px;
+}
+
+/* ---- NAV ---- */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,12,16,0.88);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid var(--border-dim);
+}
+
+.nav-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.nav-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 0;
+  position: relative;
+  transition: color 0.25s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: var(--text-dim);
+}
+
+.menu-toggle svg { display: block; }
+
+/* ---- PAGE WRAPPER ---- */
+.page {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- PAGE HEADER ---- */
+.page-header {
+  padding: 3.5rem 0 2rem;
+  border-bottom: 1px solid var(--border-dim);
+  margin-bottom: 2.5rem;
+}
+
+.page-header h1 {
+  font-family: var(--serif);
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text);
+}
+
+.page-header .subtitle {
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  margin-top: 0.35rem;
+  font-weight: 300;
+}
+
+/* ---- HERO (index only) ---- */
+.hero {
+  padding: 4rem 0 3rem;
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 2.75rem;
+  align-items: start;
+}
+
+.hero-photo-wrap {
+  position: relative;
+  width: 170px;
+  height: 170px;
+}
+
+.hero-photo-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-dim), transparent 60%);
+  opacity: 0.5;
+}
+
+.hero-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 15%;
+  position: relative;
+  z-index: 1;
+  border: 3px solid var(--bg);
+}
+
+.hero-text h1 {
+  font-family: var(--serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 0.2rem;
+}
+
+.hero-text .tagline {
+  font-size: 0.88rem;
+  color: var(--accent);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.hero-text .bio {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  margin-bottom: 1rem;
+  max-width: 540px;
+}
+
+/* ---- PILL LINKS ---- */
+.pill-links {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.pill-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-dim);
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+
+.pill-links a:hover {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+
+.pill-links a svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* ---- SECTION ---- */
+.section {
+  padding: 2.5rem 0;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border-dim);
+}
+
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- INTEREST TAGS ---- */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tags span {
+  font-size: 0.73rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  background: var(--accent-glow);
+  color: var(--accent);
+  border: 1px solid rgba(110,168,217,0.12);
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+
+/* ---- CARDS (publications, projects) ---- */
+.card-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius);
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border);
+  background: var(--bg-raised);
+  transform: translateY(-1px);
+}
+
+.card .card-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.4rem;
+}
+
+.card h3 {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
+  color: var(--text);
+}
+
+.card .card-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.card .card-meta em {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.card p {
+  font-size: 0.84rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+.card .pub-links {
+  margin-top: 0.6rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.card .pub-links a {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--accent-dim);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.card .pub-links a:hover {
+  background: var(--accent-glow);
+  border-color: var(--accent);
+}
+
+.card .pub-links a svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---- PROJECT GRID ---- */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.project-card {
+  padding: 1.4rem 1.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius);
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+
+.project-card:hover {
+  border-color: var(--border);
+  background: var(--bg-raised);
+  transform: translateY(-1px);
+}
+
+.project-card h3 {
+  font-family: var(--serif);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: var(--text);
+}
+
+.project-card .project-type {
+  font-size: 0.72rem;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.6rem;
+}
+
+.project-card p {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+/* ---- CV PAGE ---- */
+.cv-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 0.55rem 1.15rem;
+  border: 1.5px solid var(--accent-dim);
+  border-radius: 8px;
+  transition: all 0.25s;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+}
+
+.cv-download-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+  border-color: var(--accent);
+}
+
+.cv-download-btn svg { width: 14px; height: 14px; }
+
+.cv-section {
+  margin-bottom: 2.5rem;
+}
+
+.cv-section-title {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--accent-dim);
+  margin-bottom: 1.5rem;
+}
+
+.cv-entry {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+  align-items: start;
+}
+
+/* ---- ORG ICON ---- */
+/* To replace with real logos:
+   1. Save logo as e.g. assets/logos/ashoka.png (ideally square, transparent bg)
+   2. Replace the .org-icon content with: <img src="../assets/logos/ashoka.png" alt="Ashoka University">
+   3. Add to .org-icon img: width:100%; height:100%; object-fit:contain; padding:5px;
+*/
+.org-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+  overflow: hidden;
+}
+
+.org-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.org-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 5px;
+}
+
+.cv-entry h4 {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 0.1rem;
+}
+
+.cv-entry .cv-org {
+  font-size: 0.82rem;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.cv-entry .cv-org a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.cv-entry .cv-org a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.cv-entry .cv-date {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.cv-entry .cv-desc {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.65;
+  margin-top: 0.35rem;
+}
+
+/* ---- AWARDS ICON ---- */
+.award-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(212,169,89,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ---- FOOTER ---- */
+footer {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 2rem var(--gutter) 3rem;
+  border-top: 1px solid var(--border-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+footer a { color: var(--text-dim); }
+footer a:hover { color: var(--accent); }
+
+.footer-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 1.5rem;
+    padding-top: 3rem;
+  }
+
+  .hero-photo-wrap {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+  }
+
+  .hero-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  .hero-text .bio { max-width: 100%; }
+  .pill-links { justify-content: center; }
+  .project-grid { grid-template-columns: 1fr; }
+
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: rgba(11,12,16,0.96);
+    backdrop-filter: blur(16px);
+    padding: 1.25rem var(--gutter) 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border-dim);
+  }
+
+  .menu-toggle { display: block; }
+
+  .cv-entry { grid-template-columns: 38px 1fr; gap: 0.75rem; }
+  .org-icon, .award-icon { width: 38px; height: 38px; border-radius: 8px; }
+
+  footer { flex-direction: column; gap: 0.75rem; text-align: center; }
+}
+
+/* ---- SUBTLE GLOW BEHIND HERO ---- */
+.hero-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, var(--accent-glow-strong) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- PAGE TRANSITION ---- */
+.page { animation: fadeUp 0.4s ease-out; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+  </style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-name">Sanyam Mahajan</a>
+    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/">About</a></li>
+      <li><a href="/publications/">Writing</a></li>
+      <li><a href="/projects/">Projects</a></li>
+      <li><a href="/cv/" class="active">CV</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <h1>Curriculum Vitae</h1>
+    <p class="subtitle">Research, policy, and institution-building across digital governance</p>
+  </div>
+
+  <a href="/assets/Sanyam_Mahajan_CV.pdf" class="cv-download-btn" target="_blank">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Download PDF
+  </a>
+
+  <div class="cv-section">
+    <div class="cv-section-title">Education</div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: Save Ashoka logo to assets/logos/ashoka.png, then use <img src=/assets/logos/ashoka.png alt=Ashoka> instead of SVG -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="16" stroke="#6ea8d9" stroke-width="1" opacity="0.3"/><circle cx="22" cy="22" r="10" stroke="#6ea8d9" stroke-width="1" opacity="0.5"/><circle cx="22" cy="22" r="4" fill="#6ea8d9" opacity="0.6"/></svg>
+      </div>
+      <div><h4>Young India Fellowship</h4><div class="cv-org"><a href="https://www.ashoka.edu.in/" target="_blank">Ashoka University</a>, Sonipat</div><div class="cv-date">2025 – 2026</div></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: Save Ramjas logo to assets/logos/ramjas.png -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="12" width="24" height="20" rx="2" stroke="#6ea8d9" stroke-width="1" opacity="0.4"/><path d="M14 12V10a8 8 0 0116 0v2" stroke="#6ea8d9" stroke-width="1" opacity="0.5"/><line x1="22" y1="18" x2="22" y2="26" stroke="#6ea8d9" stroke-width="1.5" opacity="0.6"/><line x1="18" y1="22" x2="26" y2="22" stroke="#6ea8d9" stroke-width="1.5" opacity="0.6"/></svg>
+      </div>
+      <div><h4>BA (Hons) Political Science</h4><div class="cv-org"><a href="https://ramjas.du.ac.in/" target="_blank">Ramjas College</a>, <a href="https://www.du.ac.in/" target="_blank">University of Delhi</a></div><div class="cv-date">2022 – 2025</div></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: Save Takshashila logo to assets/logos/takshashila.png -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="22,8 34,28 10,28" stroke="#6ea8d9" stroke-width="1" fill="none" opacity="0.4"/><polygon points="22,14 28,24 16,24" stroke="#6ea8d9" stroke-width="1" fill="none" opacity="0.6"/><circle cx="22" cy="21" r="2" fill="#6ea8d9" opacity="0.5"/></svg>
+      </div>
+      <div><h4>Graduate Certificate in Public Policy (Technology &amp; Society)</h4><div class="cv-org"><a href="https://takshashila.org.in/" target="_blank">Takshashila Institution</a></div><div class="cv-date">2025</div></div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <div class="cv-section-title">Research &amp; Policy Experience</div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: Save UofR logo to assets/logos/rochester.png -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="14" width="24" height="16" rx="3" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><circle cx="22" cy="22" r="5" stroke="#6ea8d9" stroke-width="1.2" opacity="0.55"/><path d="M19.5 22l2 2 3-4" stroke="#6ea8d9" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/></svg>
+      </div>
+      <div><h4>Research Assistant</h4><div class="cv-org"><a href="https://www.rochester.edu/" target="_blank">University of Rochester</a> &amp; <a href="https://www.wisc.edu/" target="_blank">University of Wisconsin–Madison</a></div><div class="cv-date">December 2025 – Present</div><p class="cv-desc">Constructing a dataset by hand-coding Immovable Property Returns (IPRs) of Indian civil servants, converting unstructured administrative disclosures into standardised economic variables for a study on administrative corruption and wealth accumulation.</p></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: Takshashila logo -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><polygon points="22,8 34,28 10,28" stroke="#6ea8d9" stroke-width="1" fill="none" opacity="0.4"/><polygon points="22,14 28,24 16,24" stroke="#6ea8d9" stroke-width="1" fill="none" opacity="0.6"/><circle cx="22" cy="21" r="2" fill="#6ea8d9" opacity="0.5"/></svg>
+      </div>
+      <div><h4>LEPF Research Associate</h4><div class="cv-org"><a href="https://takshashila.org.in/" target="_blank">Takshashila Institution</a></div><div class="cv-date">March – November 2025</div><p class="cv-desc">Headed research and co-authored a paper on reimagining policing systems, screening 12 countries using a legal-constitutional scorecard. Awarded joint first authorship; runner-up for Best Paper in a competitive cohort.</p></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: UN logo to assets/logos/un.png -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="22" r="13" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><ellipse cx="22" cy="22" rx="6" ry="13" stroke="#6ea8d9" stroke-width="0.8" opacity="0.4"/><line x1="9" y1="22" x2="35" y2="22" stroke="#6ea8d9" stroke-width="0.8" opacity="0.4"/><path d="M12 16h20M12 28h20" stroke="#6ea8d9" stroke-width="0.6" opacity="0.3"/></svg>
+      </div>
+      <div><h4>Millennium Fellow</h4><div class="cv-org"><a href="https://www.un.org/en/academic-impact/" target="_blank">United Nations Academic Impact</a></div><div class="cv-date">August 2024 – January 2025</div><p class="cv-desc">Launched <em>Internet on Trust</em> newsletter reaching 1,000+ readers and hosted three policy panel discussions on internet governance with 200+ attendees.</p></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: Parliament/Rajya Sabha logo to assets/logos/parliament.png -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 30h20" stroke="#6ea8d9" stroke-width="1.2" opacity="0.5"/><path d="M14 30V18" stroke="#6ea8d9" stroke-width="1" opacity="0.4"/><path d="M22 30V18" stroke="#6ea8d9" stroke-width="1" opacity="0.4"/><path d="M30 30V18" stroke="#6ea8d9" stroke-width="1" opacity="0.4"/><path d="M10 18h24l-4-6H14z" stroke="#6ea8d9" stroke-width="1" fill="none" opacity="0.5"/><circle cx="22" cy="14" r="1.5" fill="#6ea8d9" opacity="0.4"/></svg>
+      </div>
+      <div><h4>Policy &amp; Communications Aide</h4><div class="cv-org"><a href="https://rajyasabha.nic.in/" target="_blank">Office of MP Sujeet Kumar, Rajya Sabha</a></div><div class="cv-date">August 2024</div><p class="cv-desc">Drafted speeches (including for UNICEF forums), policy briefs, and parliamentary questions — three referenced in the Rajya Sabha during the Monsoon Session. Formulated 34 questions for the upcoming session, highest among six interns.</p></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: CCS logo to assets/logos/ccs.png -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="11" y="11" width="22" height="22" rx="4" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><path d="M18 18h8M18 22h6M18 26h8" stroke="#6ea8d9" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/></svg>
+      </div>
+      <div><h4>Researching Reality Scholar &amp; Public Policy Intern</h4><div class="cv-org"><a href="https://ccs.in/" target="_blank">Centre for Civil Society</a></div><div class="cv-date">February – August 2024</div><p class="cv-desc">Led a three-member team producing a comparative study of the RTE Act and NEP 2020, adopted as the lead chapter in CCS's flagship report <em>Beyond Classrooms</em>. Analysed 75+ laws across 19 states and conducted seven stakeholder consultations.</p></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <!-- REPLACE: YLAC logo to assets/logos/ylac.png -->
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14 14l8 8 8-8" stroke="#6ea8d9" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/><line x1="22" y1="22" x2="22" y2="32" stroke="#6ea8d9" stroke-width="1.2" stroke-linecap="round" opacity="0.45"/><circle cx="22" cy="22" r="12" stroke="#6ea8d9" stroke-width="0.8" opacity="0.25"/></svg>
+      </div>
+      <div><h4>Policy-in-Action Fellow</h4><div class="cv-org"><a href="https://www.ylacfoundation.org/" target="_blank">Young Leaders for Active Citizenship (YLAC)</a></div><div class="cv-date">November – December 2023</div><p class="cv-desc">Co-authored a fiscal federalism policy brief analysing Finance Commission tables, Bihar budgets, and UDISE+ data. Presented findings to MP Manoj Kumar Jha.</p></div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <div class="cv-section-title">Publications</div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="8" width="16" height="22" rx="2" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><path d="M16 14h8M16 18h6M16 22h8M16 26h4" stroke="#6ea8d9" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/></svg>
+      </div>
+      <div><h4>Reimagining Policing for Society 5.0</h4><div class="cv-org">With Karthik Bappanad · <a href="https://takshashila.org.in/" target="_blank">Takshashila Institution</a> · Forthcoming 2025</div></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="8" width="16" height="22" rx="2" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><path d="M16 14h8M16 18h6M16 22h8M16 26h4" stroke="#6ea8d9" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/></svg>
+      </div>
+      <div><h4>From Access to Equity: A Comparative Analysis of the RTE Act and NEP 2020</h4><div class="cv-org">In <em>Beyond Classrooms: Policy &amp; Practice</em> · <a href="https://ccs.in/" target="_blank">Centre for Civil Society</a> · 2024</div></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="12" y="8" width="16" height="22" rx="2" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><path d="M16 14h8M16 18h6M16 22h8M16 26h4" stroke="#6ea8d9" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/></svg>
+      </div>
+      <div><h4>GDPR vs DPDP: A Comparative Analysis on User-Centrism</h4><div class="cv-org">Ramjas Political Review · Volume 1, Number 2 · 2024</div></div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <div class="cv-section-title">Awards &amp; Scholarships</div>
+    <div class="cv-entry">
+      <div class="award-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="17" r="8" stroke="#d4a959" stroke-width="1.2" opacity="0.6"/><path d="M17 25l-2.5 10 7.5-4 7.5 4-2.5-10" stroke="#d4a959" stroke-width="1.2" fill="none" opacity="0.5"/><path d="M20 15l2-4 2 4 4 .5-3 3 1 4-4-2-4 2 1-4-3-3z" fill="#d4a959" opacity="0.3"/></svg></div>
+      <div><h4>Runner-up, Best Paper Award</h4><p class="cv-desc">Selected by independent jury; competing papers authored by IPS officers, army officials, associate professors, advocates, and forensic scientists.</p></div>
+    </div>
+    <div class="cv-entry">
+      <div class="award-icon"><svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="22" cy="17" r="8" stroke="#d4a959" stroke-width="1.2" opacity="0.6"/><path d="M17 25l-2.5 10 7.5-4 7.5 4-2.5-10" stroke="#d4a959" stroke-width="1.2" fill="none" opacity="0.5"/><path d="M20 15l2-4 2 4 4 .5-3 3 1 4-4-2-4 2 1-4-3-3z" fill="#d4a959" opacity="0.3"/></svg></div>
+      <div><h4>Inaugural Cheistha Kochhar Scholarship</h4><div class="cv-org"><a href="https://takshashila.org.in/" target="_blank">Takshashila Institution</a></div><p class="cv-desc">Full scholarship awarded for demonstrated commitment to public policy and technology–society analysis.</p></div>
+    </div>
+  </div>
+
+  <div class="cv-section">
+    <div class="cv-section-title">Certifications</div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="13" width="24" height="18" rx="3" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><path d="M16 19h12M16 23h8M16 27h10" stroke="#6ea8d9" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/></svg>
+      </div>
+      <div><h4>Graduate Certificate in Public Policy (Technology &amp; Society)</h4><div class="cv-org"><a href="https://takshashila.org.in/" target="_blank">Takshashila Institution</a></div></div>
+    </div>
+    <div class="cv-entry">
+      <div class="org-icon">
+        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="13" width="24" height="18" rx="3" stroke="#6ea8d9" stroke-width="1" opacity="0.35"/><path d="M16 19h12M16 23h8M16 27h10" stroke="#6ea8d9" stroke-width="0.8" stroke-linecap="round" opacity="0.4"/></svg>
+      </div>
+      <div><h4>Statistics in Public Policy</h4><div class="cv-org"><a href="https://ccs.in/" target="_blank">Centre for Civil Society</a> &amp; Microsoft</div></div>
+    </div>
+  </div>
+</div>
+<footer>
+  <span>&copy; 2026 Sanyam Mahajan</span>
+  <div class="footer-links">
+    <a href="mailto:sanyammahajan042@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/mahajansanyam/" target="_blank">LinkedIn</a>
+    <a href="https://github.com/sanyam-mahajan" target="_blank">GitHub</a>
+  </div>
+</footer>
+</body>
+</html>
