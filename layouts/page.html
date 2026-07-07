@@ -1,9 +1,0 @@
-{{ define "main" }}
-<article>
-  <h2 class="page-title">{{ .Title }}</h2>
-  {{ with .Params.subtitle }}<p class="page-subtitle">{{ . }}</p>{{ end }}
-  {{ with .Params.meta }}<p class="item-meta">{{ . | markdownify }}</p>{{ end }}
-  {{ .Content }}
-  {{ with .Params.action }}<p class="item-action"><a href="{{ .url }}">{{ .text }} &rarr;</a></p>{{ end }}
-</article>
-{{ end }}
