@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Publications &amp; Writing on sanyam-mahajan.github.io</title>
+		<link>https://sanyam-mahajan.github.io/publications/</link>
+		<description>Recent content in Publications &amp; Writing on sanyam-mahajan.github.io</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Mon, 01 Jun 2026 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://sanyam-mahajan.github.io/publications/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Protection as Misframing: Child Agency, Surveillance Capitalism, and India&#39;s Verifiable Parental Consent Mechanism</title>
+				<link>https://sanyam-mahajan.github.io/publications/protection-as-misframing/</link>
+				<pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate>
+				<guid>https://sanyam-mahajan.github.io/publications/protection-as-misframing/</guid>
+				<description>Argues that India&amp;rsquo;s DPDP Rules construct &amp;ldquo;child protection&amp;rdquo; through surveillance architecture rather than rights frameworks.</description>
+			</item>
+			<item>
+				<title>Reimagining Policing for Society 5.0</title>
+				<link>https://sanyam-mahajan.github.io/publications/reimagining-policing/</link>
+				<pubDate>Sat, 01 Nov 2025 00:00:00 +0000</pubDate>
+				<guid>https://sanyam-mahajan.github.io/publications/reimagining-policing/</guid>
+				<description>Comparative analysis of policing systems across 12 countries. Runner-up for Best Paper.</description>
+			</item>
+			<item>
+				<title>From Access to Equity: A Comparative Analysis of the RTE Act and NEP 2020</title>
+				<link>https://sanyam-mahajan.github.io/publications/from-access-to-equity/</link>
+				<pubDate>Thu, 01 Aug 2024 00:00:00 +0000</pubDate>
+				<guid>https://sanyam-mahajan.github.io/publications/from-access-to-equity/</guid>
+				<description>Lead chapter in CCS&amp;rsquo;s flagship report on the transition from access-oriented to equity-oriented education regulation in India.</description>
+			</item>
+			<item>
+				<title>GDPR vs DPDP: A Comparative Analysis on User-Centrism</title>
+				<link>https://sanyam-mahajan.github.io/publications/gdpr-vs-dpdp/</link>
+				<pubDate>Wed, 01 May 2024 00:00:00 +0000</pubDate>
+				<guid>https://sanyam-mahajan.github.io/publications/gdpr-vs-dpdp/</guid>
+				<description>Comparative analysis of the EU&amp;rsquo;s GDPR and India&amp;rsquo;s DPDP Act on user-centric design, data principal rights, and enforcement.</description>
+			</item>
+	</channel>
+</rss>

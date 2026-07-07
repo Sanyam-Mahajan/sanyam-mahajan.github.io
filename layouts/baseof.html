@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="{{ .Site.Params.description }}">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  <script>
+    (function () {
+      var t = localStorage.getItem("theme");
+      if (t) document.documentElement.setAttribute("data-theme", t);
+      else if (window.matchMedia("(prefers-color-scheme: dark)").matches)
+        document.documentElement.setAttribute("data-theme", "dark");
+    })();
+  </script>
+</head>
+<body>
+  <div class="theme-toggle">
+    <button id="moon" aria-label="Dark mode">&#9789;</button>
+    <button id="sun" aria-label="Light mode">&#9788;</button>
+  </div>
+  <header class="site-header">
+    <h1 class="site-title"><a href="{{ "/" | relURL }}">{{ .Site.Title }}</a></h1>
+    <nav class="site-nav">
+      {{ range .Site.Menus.main }}<a href="{{ .URL | relURL }}">{{ .Name }}</a>{{ end }}
+    </nav>
+  </header>
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+  <footer class="site-footer">
+    <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.author }}<br>
+    Design inspired by <a href="https://pradyuprasad.com">pradyuprasad.com</a>, itself inspired by <a href="https://joodaloop.com">joodaloop</a>.</p>
+  </footer>
+  <script>
+    document.getElementById("moon").addEventListener("click", function () {
+      document.documentElement.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    });
+    document.getElementById("sun").addEventListener("click", function () {
+      document.documentElement.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="abstract">
+  <h3 class="paper-heading">Abstract</h3>
+  {{ .Content }}
+  <p class="keywords"><strong>Keywords:</strong> {{ .Site.Params.keywords }}</p>
+</section>
+
+<section class="personal-info">
+  <h3 class="paper-heading">Personal Info</h3>
+  <p>
+    <strong>Studying:</strong> Young India Fellowship, <a href="https://www.ashoka.edu.in/">Ashoka University</a> (2025&ndash;26)<br>
+    <strong>Location:</strong> Sonipat &bull; New Delhi, India<br>
+    <strong>Connecting:</strong> <a href="{{ .Site.Params.linkedin }}">mahajansanyam</a><br>
+    <strong>Programming:</strong> <a href="{{ .Site.Params.github }}">sanyam-mahajan</a>
+  </p>
+  <h4 class="paper-subheading">Contact</h4>
+  <p><strong>Email:</strong> <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.emailObfuscated }}</a></p>
+</section>
+
+<section class="recent-writing">
+  <h2 class="paper-heading">Recent Writing</h2>
+  <ul class="writing-list">
+    {{ range first 5 (where .Site.RegularPages "Section" "publications") }}
+    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="date">[{{ .Params.year }}]</span></li>
+    {{ end }}
+  </ul>
+  <p class="view-all"><a href="{{ "/publications/" | relURL }}">View all writing &rarr;</a></p>
+</section>
+{{ end }}
