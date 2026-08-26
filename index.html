@@ -1,0 +1,212 @@
+---
+layout: default
+---
+<a class="skip" href="#s1">Skip to the record</a>
+
+<header class="band">
+  <div class="band-inner">
+    <p class="imprint">{{ site.url | remove: "https://" }}</p>
+    <div class="band-grid">
+      <figure class="plate">
+        <img src="{{ '/assets/portrait.jpg' | relative_url }}" alt="{{ site.author.name }}" width="465" height="504">
+        <figcaption>Frontispiece</figcaption>
+      </figure>
+      <div class="band-text">
+        <h1 class="longtitle">{{ site.long_title | strip_newlines | strip }}
+          <span class="boiler">and of matters connected therewith or incidental thereto.</span></h1>
+        <hr class="rule-foil">
+        <p class="who"><b>{{ site.author.role }}</b> &nbsp;&middot;&nbsp; {{ site.author.affiliation }}</p>
+        <p class="who who--2">{{ site.author.location }} &nbsp;&middot;&nbsp; {{ site.tagline }}{% if site.author.open_to_collaboration %} &nbsp;&middot;&nbsp; <span class="open">Open to collaboration</span>{% endif %}</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="Sections and display controls">
+  <div class="nav-inner">
+    <div class="rail"><div class="nav-links">
+      <a href="#s1"><span class="s">&sect;1</span> Record</a>
+      <a href="#s2"><span class="s">&sect;2</span> Definitions</a>
+      <a href="#s3"><span class="s">&sect;3</span> Published</a>
+      <a href="#s4"><span class="s">&sect;4</span> Under review</a>
+      <a href="#s5"><span class="s">&sect;5</span> Public writing</a>
+      <a href="#s6"><span class="s">&sect;6</span> CV</a>
+      <a href="#s7"><span class="s">&sect;7</span> Collaboration</a>
+      <a href="#sch">Schedules</a>
+      <a href="#obj">Objects and reasons</a>
+    </div></div>
+    <div class="nav-tools">
+      <span class="tool-label">Text</span>
+      <button class="tool" id="fsDown" type="button" aria-label="Decrease text size">A&minus;</button>
+      <button class="tool" id="fsUp" type="button" aria-label="Increase text size">A+</button>
+      <button class="tool" id="tg" type="button">Dark</button>
+    </div>
+  </div>
+</nav>
+
+<main class="page" id="main">
+
+  <div class="clause" id="s1">
+    <div class="marg"><span class="mnote">Short title and extent.</span></div>
+    <div class="col">
+      <p><span class="sec-no">1.</span> <span class="sub-no">(1)</span> This is the working record of {{ site.author.name }}, who researches how India regulates the internet, its schools and its police, and what those rules do once they reach the people they name.</p>
+      <p><span class="sub-no">(2)</span> It extends to work completed between 2023 and the present, and to work presently under review.</p>
+    </div>
+  </div>
+
+  <div class="clause" id="s2">
+    <div class="marg"><span class="mnote">Definitions.</span></div>
+    <div class="col">
+      <p><span class="sec-no">2.</span> In this account, unless the context otherwise requires,&mdash;</p>
+      <div class="subs">
+        {% assign letters = "a,b,c,d,e,f,g,h,i,j" | split: "," %}
+        {% for d in site.data.definitions %}
+        <div><span class="lbl">(<em>{{ letters[forloop.index0] }}</em>)</span> <q>{{ d.term }}</q> {{ d.body | strip_newlines | strip }}</div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="clause" id="s3">
+    <div class="marg"><span class="mnote">Peer-reviewed articles and edited volumes.</span></div>
+    <div class="col">
+      <p><span class="sec-no">3.</span> The following have been published:&mdash;</p>
+      <div class="entries">
+        {% for w in site.data.publications %}
+        <div class="entry">
+          <div>
+            <span class="reg">Record</span>
+            <span class="work">{{ w.title }}</span>
+            <span class="cite">{% for line in w.cite %}{{ line }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</span>
+            {% if w.link or w.request %}
+            <div class="tags">
+              {% if w.request %}
+              <a class="status status--link" href="mailto:{{ site.author.email }}?subject={{ w.title | prepend: 'Request for ' | uri_escape }}">{{ w.link_label | default: 'Available on request' }}</a>
+              {% else %}
+              <a class="status status--link" href="{{ w.link }}">{{ w.link_label | default: 'Read' }}</a>
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+          <div>
+            <span class="reg">Plainly</span>
+            <p class="plain">{{ w.plainly | strip_newlines | strip }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="clause" id="s4">
+    <div class="marg"><span class="mnote">Under review and in preparation.</span><span class="aside">Both ask the same question from opposite ends: who does a statute assume you are?</span></div>
+    <div class="col">
+      <p><span class="sec-no">4.</span> The following are not yet published:&mdash;</p>
+      <div class="entries">
+        {% for w in site.data.forthcoming %}
+        <div class="entry">
+          <div>
+            <span class="reg">Record</span>
+            <span class="work">{{ w.title }}</span>
+            <span class="cite">{% for line in w.cite %}{{ line }}{% unless forloop.last %}<br>{% endunless %}{% endfor %}</span>
+            {% if w.status %}<div class="tags"><span class="status">{{ w.status }}</span></div>{% endif %}
+          </div>
+          <div>
+            <span class="reg">Plainly</span>
+            <p class="plain">{{ w.plainly | strip_newlines | strip }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="clause" id="s5">
+    <div class="marg"><span class="mnote">Public writing.</span><span class="aside">Currently dormant!</span></div>
+    <div class="col">
+      <p><span class="sec-no">5.</span> <span class="sub-no">(1)</span> <em>Internet on Trust</em>, a newsletter on internet rights and the on-ground effects of government intervention, founded under the Millennium Fellowship and read by over a thousand people.</p>
+      <p><span class="sub-no">(2)</span> Three panel discussions were convened alongside it with policymakers and NGO leaders, attended by two hundred in total.</p>
+      <p><span class="status status--quiet">Archive, no longer published</span></p>
+    </div>
+  </div>
+
+  <div class="clause" id="s6">
+    <div class="marg"><span class="mnote">Curriculum vitae.</span></div>
+    <div class="col">
+      <p><span class="sec-no">6.</span> A copy of the curriculum vitae, current as of {{ site.last_revised | date: "%B %Y" }}, is available at <a href="{{ '/cv.pdf' | relative_url }}">cv.pdf</a>.</p>
+    </div>
+  </div>
+
+  <div class="clause" id="s7">
+    <div class="marg"><span class="mnote">Collaboration and correspondence.</span></div>
+    <div class="col">
+      <p><span class="sec-no">7.</span> <span class="sub-no">(1)</span> The author is open to collaboration, and is glad to hear from anyone working on data protection, the regulation of schools and universities, or platform liability in India, whether on research, writing or review.</p>
+      <p><span class="sub-no">(2)</span> Any such approach, any request under section 3, and any other correspondence, may be sent to <a href="mailto:{{ site.author.email }}">{{ site.author.email }}</a>, or by way of <a href="{{ site.author.linkedin }}">LinkedIn</a>.</p>
+      <p><span class="sub-no">(3)</span> Published work is indexed on <a href="{{ site.author.scholar }}">Google Scholar</a>, and the author is registered under ORCID iD <a href="https://orcid.org/{{ site.author.orcid }}"><span class="dt">{{ site.author.orcid }}</span></a>.</p>
+    </div>
+  </div>
+
+  <h2 class="part" id="sch">The Schedules</h2>
+
+  <div class="clause">
+    <div class="marg"><span class="mnote">Research and professional experience.</span></div>
+    <div class="col">
+      <div class="sched-wrap">
+        <table class="sched">
+          <caption>Schedule I, see section 1(2)</caption>
+          <thead><tr><th scope="col">Position</th><th scope="col">What it involved</th><th scope="col">When</th></tr></thead>
+          <tbody>
+            {% for e in site.data.experience %}
+            <tr>
+              <td>{{ e.role }}<span class="org">{{ e.org }}</span></td>
+              <td>{{ e.detail | strip_newlines | strip }}</td>
+              <td class="when">{{ e.when }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="clause">
+    <div class="marg"><span class="mnote">Awards and certifications.</span></div>
+    <div class="col">
+      <div class="sched-wrap">
+        <table class="sched">
+          <caption>Schedule II, see section 1(2)</caption>
+          <thead><tr><th scope="col">Award</th><th scope="col">Conferred by</th><th scope="col">When</th></tr></thead>
+          <tbody>
+            {% for a in site.data.awards %}
+            <tr>
+              <td>{{ a.award }}{% if a.award_note %}<span class="org">{{ a.award_note }}</span>{% endif %}</td>
+              <td>{{ a.by }}{% if a.note %}<span class="org">{{ a.note | strip_newlines | strip }}</span>{% endif %}</td>
+              <td class="when">{{ a.when }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="part" id="obj">Statement of Objects and Reasons</h2>
+
+  <div class="clause">
+    <div class="marg"><span class="mnote">Objects and reasons.</span></div>
+    <div class="col">
+      <p>India regulates its digital and educational institutions through statutes that describe a person who does not exist: the user who can meaningfully refuse, the student who can walk away, the intermediary that only passes things along. Each was a fair description once. None of them survives contact with how those institutions now behave.</p>
+      <p>The work collected here proceeds from that gap. It reads Indian statutes closely, sets them against the regimes of other countries, and asks one question of each: where the text leaves room, whose interest does it resolve toward?</p>
+      <p>Two directions follow. The first is sectoral. A data protection regime that is deliberately sector-agnostic cannot see the particular dependence a student has on the university that evaluates them, and the case for sector-specific rules in education still needs building. The second is definitional. Where a statutory category no longer describes the entities it governs, the answer is not more rules layered above it, but a tiered typology in the parent Act.</p>
+      <p>The author intends to pursue both in graduate research, and is glad to hear from anyone working on either.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <p class="colophon">I am not a coder. This website has been made by the utilisation of Claude Code; the ideation, however, primarily remained mine.</p>
+    <p class="foot-meta">{{ site.author.name }} &middot; {{ site.author.location }} &middot; This record was last revised on {{ site.last_revised | date_to_long_string }}</p>
+  </div>
+</footer>

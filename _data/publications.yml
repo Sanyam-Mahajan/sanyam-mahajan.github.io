@@ -1,0 +1,42 @@
+# Section 3. Published work.
+#
+# To add one, copy a block and change the fields. Order here is the order
+# on the page. "plainly" is the right-hand column: one or two sentences in
+# your own voice saying what the piece actually argues.
+#
+#   link:       a URL, or leave it out
+#   link_label: what the button says (default "Read")
+#   request:    true turns the button into a pre-filled email request
+
+- title: "GDPR and DPDP: A Comparative Analysis on User-Centrism"
+  cite:
+    - Ramjas Political Review, Vol. 1, No. 2 · 2024
+    - Double-blind peer reviewed
+  link: https://www.ramjaspoliticalreview.com/post/gdpr-and-dpdp-a-comparative-analysis-on-user-centrism
+  plainly: >-
+    Sets the two regimes against each other on a single measure: user
+    capacity, the ability to actually exercise a right you formally hold.
+    It argues that user capacity rises as state capacity falls.
+
+- title: "From Access to Equity: A Comparative Analysis of the RTE Act and NEP 2020"
+  cite:
+    - Durgesh Jha, Ojaswi Anand and Sanyam Mahajan
+    - "Lead chapter, <em>Beyond Classrooms: Policy and Practice</em>"
+    - Centre for Civil Society · 2024
+  link: https://ccs.in/sites/default/files/2024-11/RR2024-Beyond%20Classroom-%20Policy%20and%20Practice.pdf
+  plainly: >-
+    Twenty-six sources on two decades of Indian schooling policy,
+    synthesised into three findings about who the right to education
+    actually reaches.
+
+- title: "Reimagining Policing in Society 5.0: A Look at Cybercrime and Federal Challenges"
+  cite:
+    - With Karthik Bappanad
+    - Takshashila Institution · 2025
+    - Runner-up, Best Paper, Law Enforcement and Policing Fellowship
+  request: true
+  link_label: Available on request
+  plainly: >-
+    Screens twelve countries' policing systems against India's on a
+    twelve-criterion legal-constitutional scorecard, then reads the United
+    States, Germany and Australia closely.

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>{{ site.title }} &middot; {{ site.tagline }}</title>
+<meta name="description" content="{{ site.description | strip_newlines | strip }}">
+<meta name="author" content="{{ site.author.name }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="{{ site.title }}">
+<meta property="og:title" content="{{ site.title }} &middot; {{ site.tagline }}">
+<meta property="og:description" content="{{ site.description | strip_newlines | strip }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+<meta property="og:image" content="{{ '/assets/share-card.png' | absolute_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ site.title }} &middot; {{ site.tagline }}">
+<meta name="twitter:description" content="{{ site.description | strip_newlines | strip }}">
+<meta name="twitter:image" content="{{ '/assets/share-card.png' | absolute_url }}">
+
+<link rel="icon" href="{{ '/assets/favicon.svg' | relative_url }}" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,400..600&display=swap">
+<link rel="stylesheet" href="{{ '/assets/style.css' | relative_url }}">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": {{ site.author.name | jsonify }},
+  "url": {{ site.url | jsonify }},
+  "jobTitle": {{ site.author.role | jsonify }},
+  "email": {{ site.author.email | prepend: "mailto:" | jsonify }},
+  "image": {{ '/assets/portrait.jpg' | absolute_url | jsonify }},
+  "address": { "@type": "PostalAddress", "addressLocality": {{ site.author.location | jsonify }}, "addressCountry": "IN" },
+  "worksFor": { "@type": "Organization", "name": {{ site.author.affiliation | jsonify }} },
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "Ashoka University" },
+    { "@type": "CollegeOrUniversity", "name": "Ramjas College, University of Delhi" }
+  ],
+  "knowsAbout": [
+    "Technology policy", "Internet governance", "Data protection law",
+    "Education policy", "Comparative public policy", "India"
+  ],
+  "identifier": {
+    "@type": "PropertyValue",
+    "propertyID": "ORCID",
+    "value": {{ site.author.orcid | prepend: "https://orcid.org/" | jsonify }}
+  },
+  "sameAs": [
+    {{ site.author.linkedin | jsonify }},
+    {{ site.author.orcid | prepend: "https://orcid.org/" | jsonify }},
+    {{ site.author.scholar | jsonify }}
+  ]
+}
+</script>
+</head>
+<body>
+
+{{ content }}
+
+<script src="{{ '/assets/site.js' | relative_url }}"></script>
+</body>
+</html>
