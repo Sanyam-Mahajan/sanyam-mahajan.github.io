@@ -1,84 +1,89 @@
 (function () {
-    var root = document.documentElement;
-    var tg = document.getElementById('tg');
-    var STEPS = [15, 16, 17, 19, 21];
-    var store = {
-      get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-      set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-    };
+  var root = document.documentElement;
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var store = {
+    get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+    set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+  };
 
-    /* ── Theme: follow the system, unless the visitor overrides ───── */
-    function isDark() {
-      var t = root.getAttribute('data-theme');
-      if (t) return t === 'dark';
-      return window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    function label() {
-      var dark = isDark();
-      tg.textContent = dark ? 'Light' : 'Dark';
-      tg.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
-    }
-    var saved = store.get('theme');
-    if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved);
-    label();
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
-    tg.addEventListener('click', function () {
-      var next = isDark() ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      store.set('theme', next);
-      label();
-    });
+  /* ── Spotlight: follows the pointer; drifts on its own on touch ─── */
+  var ground = document.querySelector('.ground');
+  function place(x, y) { ground.style.setProperty('--x', x + 'px'); ground.style.setProperty('--y', y + 'px'); }
+  var last = 0;
+  window.addEventListener('pointermove', function (e) {
+    if (e.pointerType === 'touch') return;
+    last = Date.now();
+    place(e.clientX, e.clientY);
+  }, { passive: true });
+  if (!reduced) {
+    var t = 0;
+    (function drift() {
+      if (Date.now() - last > 2500) {
+        t += 0.006;
+        place(innerWidth * (0.5 + 0.32 * Math.cos(t)), innerHeight * (0.42 + 0.25 * Math.sin(t * 1.3)));
+      }
+      requestAnimationFrame(drift);
+    })();
+  }
 
-    /* ── Text size ────────────────────────────────────────────────── */
-    var fsDown = document.getElementById('fsDown'), fsUp = document.getElementById('fsUp');
-    var idx = STEPS.indexOf(parseInt(store.get('fs'), 10));
-    function size(i) {
-      idx = Math.max(0, Math.min(STEPS.length - 1, i));
-      root.style.setProperty('--fs', STEPS[idx] + 'px');
-      store.set('fs', STEPS[idx]);
-      fsDown.disabled = idx === 0;
-      fsUp.disabled = idx === STEPS.length - 1;
-    }
-    if (idx >= 0) size(idx);
-    fsDown.addEventListener('click', function () { size(idx < 0 ? 1 : idx - 1); });
-    fsUp.addEventListener('click', function () { size(idx < 0 ? 3 : idx + 1); });
-
-    /* ── Current section ──────────────────────────────────────────── */
-    var links = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
-    var targets = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
-    var seen = {};
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting ? e.intersectionRatio : 0; });
-      var best = null, bestVal = 0;
-      targets.forEach(function (t) { if (t && (seen[t.id] || 0) > bestVal) { bestVal = seen[t.id]; best = t.id; } });
-      links.forEach(function (a) {
-        a.classList.toggle('here', best !== null && a.getAttribute('href') === '#' + best);
+  /* ── Rows ink in as they reach the screen (they start visible) ──── */
+  var rows = Array.prototype.slice.call(document.querySelectorAll('.e'));
+  if (!reduced && 'IntersectionObserver' in window) {
+    var batch = 0, timer = null;
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        en.target.style.setProperty('--i', batch++);
+        en.target.classList.add('in');
+        rio.unobserve(en.target);
       });
-    }, { rootMargin: '-15% 0px -55% 0px', threshold: [0, .25, .5, 1] });
-    targets.forEach(function (t) { if (t) io.observe(t); });
+      clearTimeout(timer); timer = setTimeout(function () { batch = 0; }, 120);
+    }, { rootMargin: '0px 0px -8% 0px' });
+    rows.forEach(function (r) { rio.observe(r); });
+  }
 
-    /* ── the rail: fade whichever side still has more, and keep up ── */
-    var rail = document.querySelector('.nav-links');
-    function fades() {
-      var more = rail.scrollWidth - rail.clientWidth;
-      var shell = rail.parentElement;
-      shell.classList.toggle('fade-l', rail.scrollLeft > 2);
-      shell.classList.toggle('fade-r', more > 2 && rail.scrollLeft < more - 2);
-    }
-    rail.addEventListener('scroll', fades, { passive: true });
-    window.addEventListener('resize', fades);
-    fades();
+  /* ── Section menu follows the scroll (laptop) ─────────────────── */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.toc a'));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+  function current() {
+    var y = window.scrollY + innerHeight * 0.3, cur = secs[0];
+    secs.forEach(function (s) { if (s.offsetTop <= y) cur = s; });
+    if (innerHeight + window.scrollY >= document.body.scrollHeight - 4) cur = secs[secs.length - 1];
+    links.forEach(function (a, i) {
+      var on = secs[i] === cur;
+      a.classList.toggle('on', on);
+      if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current');
+    });
+  }
+  window.addEventListener('scroll', current, { passive: true });
+  current();
 
-    var follow = null;
-    function reveal() {
-      var a = rail.querySelector('a.here');
-      if (!a) return;
-      var lo = a.offsetLeft - rail.offsetLeft;
-      var hi = lo + a.offsetWidth;
-      if (lo < rail.scrollLeft + 8) rail.scrollLeft = lo - 8;
-      else if (hi > rail.scrollLeft + rail.clientWidth - 8) rail.scrollLeft = hi - rail.clientWidth + 8;
-    }
-    new MutationObserver(function () {
-      clearTimeout(follow); follow = setTimeout(reveal, 60);
-    }).observe(rail, { attributes: true, subtree: true, attributeFilter: ['class'] });
-  })();
+  /* ── Display preferences: theme and text size ─────────────────── */
+  var themeBtn = document.getElementById('theme');
+  function themeLabel() {
+    var light = root.getAttribute('data-theme') === 'light';
+    themeBtn.textContent = light ? 'Dark theme' : 'Light theme';
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', light ? '#eef1f6' : '#070d1c');
+  }
+  themeBtn.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+    root.setAttribute('data-theme', next);
+    store.set('theme', next);
+    themeLabel();
+  });
+  themeLabel();
+
+  var STEPS = [14, 16, 18, 20, 22];
+  var down = document.getElementById('fsDown'), up = document.getElementById('fsUp');
+  var i = STEPS.indexOf(parseInt(store.get('fs'), 10)); if (i < 0) i = 1;
+  function size(n) {
+    i = Math.max(0, Math.min(STEPS.length - 1, n));
+    root.style.setProperty('--fs', STEPS[i] + 'px');
+    store.set('fs', STEPS[i]);
+    down.disabled = i === 0; up.disabled = i === STEPS.length - 1;
+    current();
+  }
+  down.addEventListener('click', function () { size(i - 1); });
+  up.addEventListener('click', function () { size(i + 1); });
+  down.disabled = i === 0; up.disabled = i === STEPS.length - 1;
+})();

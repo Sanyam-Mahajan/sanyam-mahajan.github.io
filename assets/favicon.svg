@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" fill="#2E1416"/>
-  <text x="32" y="47" font-family="Georgia,'Times New Roman',serif" font-size="46"
-        fill="#C6A24A" text-anchor="middle">&#167;</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#070d1c"/><g stroke="#eef1f8" stroke-opacity=".12"><path d="M0 17h64M0 34h64M0 51h64"/></g><path d="M18 0v64" stroke="#f6b555" stroke-opacity=".55" stroke-width="2"/><text x="40" y="45" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="500" fill="#eef1f8">S</text></svg>
